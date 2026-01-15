@@ -17,7 +17,7 @@ node {
 		stage('Init CI/CD Pipeline') {
 			try {
 				sh 'echo "Building DEPI Project..."'
-				if (env.BRANCH_NAME == 'main') {
+				if (env.BRANCH_NAME == "main") {
 					sh 'echo " Condition Is True : This is the main branch. Proceeding with deployment steps..."'
 				} 
 				else {
