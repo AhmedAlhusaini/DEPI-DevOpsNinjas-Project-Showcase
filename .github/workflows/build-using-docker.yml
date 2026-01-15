@@ -23,16 +23,19 @@ jobs:
             sudo systemctl enable docker
             sudo systemctl start docker
 
-            # Prepare app directory
-            cd ~/app || mkdir ~/app && cd ~/app
+      - name: Run docker-compose build
+        run: |
+          docker compose up -d --build
 
-            # Clone if missing, otherwise pull latest
-            if [ ! -d ".git" ]; then
-              git clone https://github.com/AhmedAlhusaini/DEPI-DevOpsNinjas-Project-Showcase.git .
-            else
-              git pull origin main
-            fi
+      # Push each image defined in docker-compose.yml
+      # - name: Push images to Docker Hub
+      #   run: |
+      #     IMAGES=$(docker compose config | awk '/image:/ {print $2}')
+      #     for IMAGE in $IMAGES; do
+      #       echo "Pushing $IMAGE ..."
+      #       docker push $IMAGE
+      #     done
 
-            # Build and run with Docker Compose v2
-            docker compose build
-            docker compose up -d
+      # - name: Run containers (optional)
+      #   run: |
+      #     docker compose up -d
