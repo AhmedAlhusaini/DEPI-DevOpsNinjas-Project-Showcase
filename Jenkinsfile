@@ -17,13 +17,14 @@ node {
 		stage('Init CI/CD Pipeline') {
 			try {
 				sh 'echo "Building DEPI Project..."'
-				if (env.BRANCH_NAME == "main") {
+				if (env.BRANCH_NAME = "main") {
 					sh 'echo " Condition Is True : This is the main branch. Proceeding with deployment steps..."'
 				} 
 				else {
 					sh 'echo " Fron Else : This is not the main branch. Skipping deployment steps..."'
 				}
-			} catch (Exception e) {
+			} 
+			catch (Exception e) {
 				echo 'An error occurred during the build stage.'
 				throw e
 			}
