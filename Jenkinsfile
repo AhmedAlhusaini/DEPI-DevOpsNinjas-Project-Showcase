@@ -5,6 +5,9 @@ node {
 		// Public REPO URL
         git branch: 'main', url: 'https://github.com/AhmedAlhusaini/DEPI-DevOpsNinjas-Project-Showcase.git'
 		// DEPI PROJECT 
+		// Explicitly set BRANCH_NAME (since scripted pipeline doesn't auto-populate it) 
+		
+		//env.BRANCH_NAME = sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
 		stage('Prepar JenKin CI/CD For DEPI Project') {
 			try {
 				sh 'echo "Building DEPI Project..."'
@@ -17,10 +20,11 @@ node {
 		stage('Init CI/CD Pipeline') {
 			try {
 				sh 'echo "Building DEPI Project..."'
-				if (env.BRANCH_NAME = "main") {
+				if (env.BRANCH_NAME == "main") {
 					sh 'echo " Condition Is True : This is the main branch. Proceeding with deployment steps..."'
 				} 
 				else {
+					sh "echo 'Current branch: ${env.BRANCH_NAME}'"
 					sh 'echo " Fron Else : This is not the main branch. Skipping deployment steps..."'
 				}
 			} 
