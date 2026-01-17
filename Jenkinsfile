@@ -11,7 +11,7 @@ node {
 		stage('Prepar JenKin CI/CD For DEPI Project') {
 			try {
 				sh 'echo "Building DEPI Project..."'
-				sh 'echo "Enable Auto Triggering From GitHub Repo..."'
+				sh 'echo "Enable Auto Triggering From GitHub Repo...Against Main Branch..."'
 			} catch (Exception e) {
 				echo 'An error occurred during the echo stage.'
 				throw e
